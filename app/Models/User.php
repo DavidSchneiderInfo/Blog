@@ -16,7 +16,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static first(string[] $array)
  * @method static create(array $array)
  * @method static where(string[] $array)
- * @property int $id
+ * @property int   $id
+ * @property mixed $name
+ * @property mixed $email
  */
 class User extends Authenticatable implements MustVerifyEmail
 {

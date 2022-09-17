@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\Posts\StorePostController;
 use App\Http\Controllers\Backend\Posts\UpdatePostController;
 use App\Http\Controllers\Backend\Profile\ExportDataController;
 use App\Http\Controllers\Backend\Profile\ImportDataController;
+use App\Http\Controllers\Backend\Profile\ShowProfileController;
 use App\Http\Controllers\Blog\ShowPostsController;
 use App\Http\Controllers\Blog\ShowSinglePostController;
 use App\Http\Controllers\HomeController;
@@ -51,7 +52,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('posts/{post}', DeletePostController::class)->name('backend.posts.delete');
 
         // Profile
-        Route::post('export', ExportDataController::class)->name('backend.export');
-        Route::post('import', ImportDataController::class)->name('backend.import');
+        Route::get('profile', ShowProfileController::class)->name('backend.profile');
+        Route::post('profile/export', ExportDataController::class)->name('backend.profile.export');
+        Route::post('profile/import', ImportDataController::class)->name('backend.profile.import');
     });
 });

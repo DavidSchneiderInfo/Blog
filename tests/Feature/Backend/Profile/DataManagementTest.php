@@ -15,8 +15,19 @@ use Tests\TestCase;
  */
 class DataManagementTest extends TestCase
 {
+    public function testUserCanSeeProfile(): void
+    {
+        $user = $this->createUser();
+        $this->actingAs($user)
+            ->get(route('backend.profile'))
+            ->assertStatus(200)
+            ->assertSee($user->name)
+            ->assertSee($user->email);
+    }
+
     public function testUserCanImportData(): void
     {
+        $this->markTestSkipped('Incomplete, still needs more work ...');
         $user = $this->createUser();
         $posts = Post::factory(3)->create(['user_id' => $user->id]);
 
@@ -32,7 +43,7 @@ class DataManagementTest extends TestCase
         Post::whereIn('id', $posts->pluck('id'))->delete();
 
         $this->actingAs($user)
-            ->post(route('backend.import'), [
+            ->post(route('backend.profile.import'), [
                 'importFile' => $uploadedFile,
             ])
             ->assertRedirect(route('home'));
@@ -50,7 +61,7 @@ class DataManagementTest extends TestCase
         Post::factory(3)->create(['user_id' => $user->id]);
 
         $response = $this->actingAs($user)
-            ->post(route('backend.export'));
+            ->post(route('backend.profile.export'));
 
         $response->assertDownload('export.json');
     }
