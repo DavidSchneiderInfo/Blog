@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ExportsDatetimeValues;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Post extends Model
 {
     use HasFactory;
+    use ExportsDatetimeValues;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +26,17 @@ class Post extends Model
         = [
             'title',
             'content',
+        ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden
+        = [
+            'id',
+            'user_id',
         ];
 
     public function user(): BelongsTo
