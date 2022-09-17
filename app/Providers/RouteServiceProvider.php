@@ -20,6 +20,15 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
     /**
+     * The path to the "backend" route for your application.
+     *
+     * This is where logged-in users make it happen.
+     *
+     * @var string
+     */
+    public const BACKEND = '/backend';
+
+    /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
      * @return void

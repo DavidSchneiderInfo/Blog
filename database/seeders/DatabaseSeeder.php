@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,13 +14,25 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        if (App::environment('local')) {
+            $user = User::where(['email' => 'test@localhost'])->first();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+            if($user === null)
+            {
+                $user = User::create([
+                    'password' => bcrypt('secret12'),
+                    'name' => 'Test User',
+                    'email' => 'test@localhost'
+                ]);
+            }
+
+            if($user->posts()->count()<5) {
+                Post::factory(5)->create([
+                    'user_id' => $user->id
+                ]);
+            }
+        }
     }
 }
