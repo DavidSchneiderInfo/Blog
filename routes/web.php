@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('posts/{post}', DeletePostController::class)->name('backend.posts.delete');
 
         // Profile
-        Route::get('profile', ShowProfileController::class)->name('backend.profile');
+        Route::get('profile', ShowProfileController::class)->name('backend.profile.index');
         Route::post('profile/export', ExportDataController::class)->name('backend.profile.export');
         Route::post('profile/import', ImportDataController::class)->name('backend.profile.import');
     });

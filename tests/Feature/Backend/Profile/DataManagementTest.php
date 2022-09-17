@@ -19,7 +19,7 @@ class DataManagementTest extends TestCase
     {
         $user = $this->createUser();
         $this->actingAs($user)
-            ->get(route('backend.profile'))
+            ->get(route('backend.profile.index'))
             ->assertStatus(200)
             ->assertSee($user->name)
             ->assertSee($user->email);
