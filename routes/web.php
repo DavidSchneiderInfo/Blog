@@ -7,6 +7,8 @@ use App\Http\Controllers\Backend\Posts\PreviewPostController;
 use App\Http\Controllers\Backend\Posts\ShowPostListController;
 use App\Http\Controllers\Backend\Posts\StorePostController;
 use App\Http\Controllers\Backend\Posts\UpdatePostController;
+use App\Http\Controllers\Backend\Profile\ExportDataController;
+use App\Http\Controllers\Backend\Profile\ImportDataController;
 use App\Http\Controllers\Blog\ShowPostsController;
 use App\Http\Controllers\Blog\ShowSinglePostController;
 use App\Http\Controllers\HomeController;
@@ -39,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix(RouteServiceProvider::BACKEND)->group(function () {
 
+        // Posts
         Route::get('posts', ShowPostListController::class)->name('backend.posts.index');
         Route::get('posts/create', CreatePostsController::class)->name('backend.posts.create');
         Route::post('posts', StorePostController::class)->name('backend.posts.store');
@@ -46,5 +49,9 @@ Route::middleware('auth')->group(function () {
         Route::get('posts/{post}/edit', EditPostController::class)->name('backend.posts.edit');
         Route::put('posts/{post}', UpdatePostController::class)->name('backend.posts.update');
         Route::delete('posts/{post}', DeletePostController::class)->name('backend.posts.delete');
+
+        // Profile
+        Route::post('export', ExportDataController::class)->name('backend.export');
+        Route::post('import', ImportDataController::class)->name('backend.import');
     });
 });
