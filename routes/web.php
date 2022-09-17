@@ -7,7 +7,9 @@ use App\Http\Controllers\Backend\Posts\PreviewPostController;
 use App\Http\Controllers\Backend\Posts\ShowPostListController;
 use App\Http\Controllers\Backend\Posts\StorePostController;
 use App\Http\Controllers\Backend\Posts\UpdatePostController;
+use App\Http\Controllers\Blog\ShowPostsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomepageController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', static function () {
-    return view('welcome');
-});
+Route::get('/', HomepageController::class);
+
+Route::get('blog', ShowPostsController::class)->name('blog.index');
 
 Auth::routes(['verify' => true]);
 

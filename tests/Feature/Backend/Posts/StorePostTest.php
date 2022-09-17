@@ -22,6 +22,7 @@ class StorePostTest extends TestCase
         $this->assertDatabaseHas('posts', [
             'user_id' => $user->id,
             'title' => $post['title'],
+            'content' => $post['content'],
         ]);
     }
 }

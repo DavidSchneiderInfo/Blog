@@ -10,8 +10,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                @guest
-                @else
+                <li class="nav-item">
+                    <a class="nav-link @if(Request::is('blog/*')) active @endif" href="{{ route('blog.index') }}">{{ __('Blog') }}</a>
+                </li>
+                @auth
                     <li class="nav-item">
                         <a class="nav-link @if(Request::is(\App\Providers\RouteServiceProvider::BACKEND.'/posts/*')) active @endif" href="{{ route('backend.posts.index') }}">{{ __('Posts') }}</a>
                     </li>
