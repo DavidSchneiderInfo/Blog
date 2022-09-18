@@ -13,5 +13,6 @@
 
     <rule ref="./vendor/mreduar/laravel-phpcs/phpcs.xml">
         <exclude name="Generic.Commenting.DocComment.MissingShort"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName"/>
     </rule>
 </ruleset>

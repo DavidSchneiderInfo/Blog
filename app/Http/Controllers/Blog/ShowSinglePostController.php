@@ -15,7 +15,7 @@ class ShowSinglePostController extends Controller
      * Handle the incoming request.
      */
     public function __invoke(
-        int    $postId
+        int $postId
     ): Factory|View|Response|bool|Application
     {
         return view('blog.show')

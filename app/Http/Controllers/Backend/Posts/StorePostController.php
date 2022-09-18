@@ -14,9 +14,9 @@ class StorePostController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param \App\Http\Requests\Backend\Posts\CreatePostRequest $request
+     * @param CreatePostRequest $request
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Redirector
      */
     public function __invoke(CreatePostRequest $request): Redirector|RedirectResponse|Application
     {

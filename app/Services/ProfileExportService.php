@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\User;
+use JsonException;
 
 class ProfileExportService
 {
     /**
      * Export a user including all data
      *
-     * @throws \JsonException
+     * @throws JsonException
      */
     public function prepareExport(User $user): string
     {

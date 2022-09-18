@@ -71,7 +71,7 @@
                                 {{ __('Email') }}: {{ $user->email }}
                             </li>
                         </ul>
-                        
+
                     </div>
                 </div>
             </div>
