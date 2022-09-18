@@ -7,15 +7,15 @@ namespace Tests\Feature\Blog;
 use App\Models\Post;
 use Tests\TestCase;
 
-class ShowPostsControllerTest extends TestCase
+class ShowSinglePostControllerTest extends TestCase
 {
     public function testBlogShowsPosts(): void
     {
         $post = Post::factory()->create();
 
-        $this->get(route('blog.index'))
+        $response = $this->get(route('blog.show', $post))
             ->assertStatus(200)
             ->assertSee($post->title)
-            ->assertSee($post->summary);
+            ->assertSee($post->content);
     }
 }
