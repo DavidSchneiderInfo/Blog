@@ -54,14 +54,7 @@
                             </div>
                         @endif
 
-                        <ul>
-                            <li>
-                                {{ __('Name') }}: {{ $user->name }}
-                            </li>
-                            <li>
-                                {{ __('Email') }}: {{ $user->email }}
-                            </li>
-                        </ul>
+                        <livewire:profile.edit-details />
 
                     </div>
                 </div>
