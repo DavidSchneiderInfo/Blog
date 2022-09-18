@@ -6,6 +6,7 @@ namespace Tests\Unit\Services;
 
 use App\Models\Post;
 use App\Services\ProfileExportService;
+use JsonException;
 use Tests\TestCase;
 use function PHPUnit\Framework\assertEquals;
 
@@ -13,6 +14,7 @@ class ProfileExportServiceTest extends TestCase
 {
     /**
      * @group data-management
+     * @throws JsonException
      */
     public function testProfileExportService(): void
     {
@@ -30,7 +32,7 @@ class ProfileExportServiceTest extends TestCase
 
         $json = $service->prepareExport($user);
 
-        $data = json_decode($json, true);
+        $data = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
 
         assertEquals($data, [
             'profile' => [
@@ -43,13 +45,15 @@ class ProfileExportServiceTest extends TestCase
             'posts' => [
                 [
                     'title' => $posts->first()->title,
-                    'created_at' => (string) $posts->first()->created_at,
-                    'updated_at' => $posts->first()->updated_at,
+                    'content' => $posts->first()->content,
+                    'created_at' => (string) $posts->first()->created_at->format('Y-m-d H:i:s'),
+                    'updated_at' => $posts->first()->updated_at->format('Y-m-d H:i:s'),
                 ],
                 [
                     'title' => $posts->last()->title,
-                    'created_at' => $posts->last()->created_at,
-                    'updated_at' => $posts->last()->updated_at,
+                    'content' => $posts->last()->content,
+                    'created_at' => $posts->last()->created_at->format('Y-m-d H:i:s'),
+                    'updated_at' => $posts->last()->updated_at->format('Y-m-d H:i:s'),
                 ],
             ],
         ]);

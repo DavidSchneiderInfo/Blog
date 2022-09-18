@@ -63,14 +63,15 @@
                             </div>
                         @endif
 
-                            <ul>
-                                <li>
-                                    {{ __('Name') }}: {{ $user->name }}
-                                </li>
-                                <li>
-                                    {{ __('Email') }}: {{ $user->email }}
-                                </li>
-                            </ul>
+                        <ul>
+                            <li>
+                                {{ __('Name') }}: {{ $user->name }}
+                            </li>
+                            <li>
+                                {{ __('Email') }}: {{ $user->email }}
+                            </li>
+                        </ul>
+                        
                     </div>
                 </div>
             </div>
