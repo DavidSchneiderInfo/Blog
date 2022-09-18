@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <ruleset>
     <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg value="spv"/>
+    <ini name="memory_limit" value="128M"/>
 
     <file>./app</file>
     <file>./config</file>
@@ -10,5 +13,6 @@
 
     <rule ref="./vendor/mreduar/laravel-phpcs/phpcs.xml">
         <exclude name="Generic.Commenting.DocComment.MissingShort"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName"/>
     </rule>
 </ruleset>

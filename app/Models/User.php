@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ExportsDatetimeValues;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,10 +16,16 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static first(string[] $array)
  * @method static create(array $array)
  * @method static where(string[] $array)
+ * @property int        $id
+ * @property mixed      $name
+ * @property mixed      $email
+ * @property mixed|null $email_verified_at
+ * @property mixed      $updated_at
+ * @property mixed      $created_at
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, ExportsDatetimeValues;
 
     /**
      * The attributes that are mass assignable.
@@ -39,8 +46,10 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $hidden
         = [
+            'id',
             'password',
             'remember_token',
+            'email_verified_at',
         ];
 
     /**

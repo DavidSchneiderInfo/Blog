@@ -14,9 +14,9 @@ class PreviewPostController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param \App\Models\Post $post
+     * @param Post $post
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Auth\Access\Response|bool|\Illuminate\Contracts\Foundation\Application
+     * @return Factory|View|Response|bool|Application
      */
     public function __invoke(Post $post): Factory|View|Response|bool|Application
     {

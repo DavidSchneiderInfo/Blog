@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ExportsDatetimeValues;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @method static findOrFail(int $postId)
+ * @method static whereIn(string $string, \Illuminate\Support\Collection $pluck)
  * @property string $summary
  * @property string $content
  */
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, ExportsDatetimeValues;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +26,17 @@ class Post extends Model
         = [
             'title',
             'content',
+        ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden
+        = [
+            'id',
+            'user_id',
         ];
 
     public function user(): BelongsTo
