@@ -53,7 +53,7 @@ class EmailVerificationTest extends TestCase
 
     public function testGuestCannotSeeTheVerificationNotice()
     {
-        $response = $this->get($this->verificationNoticeRoute());
+        $response = $this->withTosAgreed()->get($this->verificationNoticeRoute());
 
         $response->assertRedirect($this->loginRoute());
     }

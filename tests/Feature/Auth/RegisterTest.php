@@ -35,7 +35,7 @@ class RegisterTest extends TestCase
 
     public function testUserCanViewARegistrationForm()
     {
-        $response = $this->get($this->registerGetRoute());
+        $response = $this->withTosAgreed()->get($this->registerGetRoute());
 
         $response->assertSuccessful();
         $response->assertViewIs('auth.register');
@@ -45,7 +45,7 @@ class RegisterTest extends TestCase
     {
         $user = User::factory()->make();
 
-        $response = $this->actingAs($user)->get($this->registerGetRoute());
+        $response = $this->withTosAgreed()->actingAs($user)->get($this->registerGetRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -54,7 +54,7 @@ class RegisterTest extends TestCase
     {
         Event::fake();
 
-        $response = $this->post($this->registerPostRoute(), [
+        $response = $this->withTosAgreed()->post($this->registerPostRoute(), [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'i-love-laravel',
@@ -74,7 +74,7 @@ class RegisterTest extends TestCase
 
     public function testUserCannotRegisterWithoutName()
     {
-        $response = $this->from($this->registerGetRoute())->post($this->registerPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->registerGetRoute())->post($this->registerPostRoute(), [
             'name' => '',
             'email' => 'john@example.com',
             'password' => 'i-love-laravel',
@@ -93,7 +93,7 @@ class RegisterTest extends TestCase
 
     public function testUserCannotRegisterWithoutEmail()
     {
-        $response = $this->from($this->registerGetRoute())->post($this->registerPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->registerGetRoute())->post($this->registerPostRoute(), [
             'name' => 'John Doe',
             'email' => '',
             'password' => 'i-love-laravel',
@@ -112,7 +112,7 @@ class RegisterTest extends TestCase
 
     public function testUserCannotRegisterWithInvalidEmail()
     {
-        $response = $this->from($this->registerGetRoute())->post($this->registerPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->registerGetRoute())->post($this->registerPostRoute(), [
             'name' => 'John Doe',
             'email' => 'invalid-email',
             'password' => 'i-love-laravel',
@@ -132,7 +132,7 @@ class RegisterTest extends TestCase
 
     public function testUserCannotRegisterWithoutPassword()
     {
-        $response = $this->from($this->registerGetRoute())->post($this->registerPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->registerGetRoute())->post($this->registerPostRoute(), [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => '',
@@ -152,7 +152,7 @@ class RegisterTest extends TestCase
 
     public function testUserCannotRegisterWithoutPasswordConfirmation()
     {
-        $response = $this->from($this->registerGetRoute())->post($this->registerPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->registerGetRoute())->post($this->registerPostRoute(), [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'i-love-laravel',
@@ -172,7 +172,7 @@ class RegisterTest extends TestCase
 
     public function testUserCannotRegisterWithPasswordsNotMatching()
     {
-        $response = $this->from($this->registerGetRoute())->post($this->registerPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->registerGetRoute())->post($this->registerPostRoute(), [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'i-love-laravel',

@@ -43,7 +43,7 @@ class ResetPasswordTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->get($this->passwordResetGetRoute($token = $this->getValidToken($user)));
+        $response = $this->withTosAgreed()->get($this->passwordResetGetRoute($token = $this->getValidToken($user)));
 
         $response->assertSuccessful();
         $response->assertViewIs('auth.passwords.reset');
@@ -66,7 +66,7 @@ class ResetPasswordTest extends TestCase
         Event::fake();
         $user = User::factory()->create();
 
-        $response = $this->post($this->passwordResetPostRoute(), [
+        $response = $this->withTosAgreed()->post($this->passwordResetPostRoute(), [
             'token' => $this->getValidToken($user),
             'email' => $user->email,
             'password' => 'new-awesome-password',
@@ -88,12 +88,14 @@ class ResetPasswordTest extends TestCase
             'password' => Hash::make('old-password'),
         ]);
 
-        $response = $this->from($this->passwordResetGetRoute($this->getInvalidToken()))->post($this->passwordResetPostRoute(), [
-            'token' => $this->getInvalidToken(),
-            'email' => $user->email,
-            'password' => 'new-awesome-password',
-            'password_confirmation' => 'new-awesome-password',
-        ]);
+        $response = $this->withTosAgreed()
+            ->from($this->passwordResetGetRoute($this->getInvalidToken()))
+            ->post($this->passwordResetPostRoute(), [
+                'token' => $this->getInvalidToken(),
+                'email' => $user->email,
+                'password' => 'new-awesome-password',
+                'password_confirmation' => 'new-awesome-password',
+            ]);
 
         $response->assertRedirect($this->passwordResetGetRoute($this->getInvalidToken()));
         $this->assertEquals($user->email, $user->fresh()->email);
@@ -107,7 +109,7 @@ class ResetPasswordTest extends TestCase
             'password' => Hash::make('old-password'),
         ]);
 
-        $response = $this->from($this->passwordResetGetRoute($token = $this->getValidToken($user)))
+        $response = $this->withTosAgreed()->from($this->passwordResetGetRoute($token = $this->getValidToken($user)))
             ->post($this->passwordResetPostRoute(), [
                 'token' => $token,
                 'email' => $user->email,
@@ -130,7 +132,7 @@ class ResetPasswordTest extends TestCase
             'password' => Hash::make('old-password'),
         ]);
 
-        $response = $this->from($this->passwordResetGetRoute($token = $this->getValidToken($user)))
+        $response = $this->withTosAgreed()->from($this->passwordResetGetRoute($token = $this->getValidToken($user)))
             ->post($this->passwordResetPostRoute(), [
                 'token' => $token,
                 'email' => '',

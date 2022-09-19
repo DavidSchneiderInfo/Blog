@@ -13,7 +13,8 @@ class ShowPostsControllerTest extends TestCase
     {
         $post = Post::factory()->create();
 
-        $this->get(route('blog.index'))
+        $this->withTosAgreed()
+            ->get(route('blog.index'))
             ->assertStatus(200)
             ->assertSee($post->title)
             ->assertSee($post->summary);
