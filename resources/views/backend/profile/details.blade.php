@@ -54,14 +54,11 @@
                             </div>
                         @endif
 
-                        <ul>
-                            <li>
-                                {{ __('Name') }}: {{ $user->name }}
-                            </li>
-                            <li>
-                                {{ __('Email') }}: {{ $user->email }}
-                            </li>
-                        </ul>
+                        <livewire:profile.edit-details />
+
+                        @if($user->email_verified_at === null)
+                            Validate email
+                        @endif
 
                     </div>
                 </div>
