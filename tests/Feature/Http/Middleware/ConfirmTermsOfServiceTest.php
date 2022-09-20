@@ -14,7 +14,10 @@ class ConfirmTermsOfServiceTest extends TestCase
     public function testRedirectWithoutCookie():void
     {
         $this->get('/')
-            ->assertRedirect(route('tos.show'));
+            ->assertRedirect(route('tos.show', ['return_url' => url('/')]));
+
+        $this->get('blog')
+            ->assertRedirect(route('tos.show', ['return_url' => route('blog.index')]));
     }
 
     public function testNoRedirectWithCookie(): void
