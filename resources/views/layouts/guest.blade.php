@@ -10,14 +10,12 @@
             @include('layouts._navbar')
         </header>
 
-        <main class="px-3 text-dark">
+        <main class="px-3">
             @yield('content')
         </main>
 
-        <footer class="mt-auto text-white-50">
-            <p>&copy; David Schneider {{ date('Y') }}.</p>
-        </footer>
+        @include('layouts._footer')
     </div>
-    @include('layouts._footer')
+    @include('layouts._footer_script')
 </body>
 </html>

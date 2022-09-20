@@ -31,7 +31,7 @@ class ConfirmTermsOfService
         }
 
         // No cookie
-        return redirect(route('tos.show', [
+        return redirect(route('legal.tos.show', [
             'return_url' => $request->url(),
         ]));
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\TermsOfService;
+namespace App\Http\Controllers\Legal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Access\Response;
@@ -16,7 +16,11 @@ class ShowTermsOfServiceController extends Controller
      */
     public function __invoke(Request $request): Factory|View|Response|bool|Application
     {
-        return view('tos.show')
-            ->with('return_url', $request->has('return_url') ? $request->get('return_url') : false);
+        return view('legal.tos')
+            ->with('return_url', $request->has('return_url') ? $request->get('return_url') : false)
+            ->with(
+                'doc',
+                file_get_contents(lang_path(app()->getLocale().'/legal/tos.md'))
+            );
     }
 }

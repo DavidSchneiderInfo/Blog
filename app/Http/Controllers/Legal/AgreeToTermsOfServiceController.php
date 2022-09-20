@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\TermsOfService;
+namespace App\Http\Controllers\Legal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
