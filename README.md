@@ -43,3 +43,14 @@ sail up -d
 sail php vendor/bin/phpcs
 sail php vendor/bin/phpcbf
 ```
+
+## After switching branch, merging, updating dependencies etc.
+
+You should frequently:
+- rebuild docker images
+- migrate the database
+
+```bash
+sail build --no-cache
+sail artisan migrate
+```
