@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('markdown', function ($expression) {
             return "<?php echo app(Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($expression); ?>";
         });
+
+        Paginator::useBootstrapFive();
     }
 }

@@ -16,11 +16,6 @@
                 <li class="nav-item">
                     <a class="nav-link @if(Request::is('blog/*')) active @endif" href="{{ route('projects.show') }}">{{ __('Projects') }}</a>
                 </li>
-                @auth
-                    <li class="nav-item">
-                        <a class="nav-link @if(Request::is(\App\Providers\RouteServiceProvider::BACKEND.'/posts/*')) active @endif" href="{{ route('backend.posts.index') }}">{{ __('Posts') }}</a>
-                    </li>
-                @endguest
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -45,6 +40,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('backend.posts.index') }}">
+                                {{ __('Posts') }}
+                            </a>
                             <a class="dropdown-item" href="{{ route('backend.profile.index') }}">
                                 {{ __('Profile') }}
                             </a>
@@ -53,7 +51,6 @@
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>

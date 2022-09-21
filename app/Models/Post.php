@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @method static findOrFail(int $postId)
  * @method static whereIn(string $string, \Illuminate\Support\Collection $pluck)
+ * @method static orderBy(string $string, string $string1)
  * @property string $summary
  * @property string $content
  */
@@ -26,6 +27,8 @@ class Post extends Model
         = [
             'title',
             'content',
+            'description',
+            'keywords',
         ];
 
     /**

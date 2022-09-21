@@ -64,7 +64,7 @@ Route::middleware('tos_agreed')->group(function () {
             Route::get('posts', ShowPostListController::class)->name('backend.posts.index');
             Route::get('posts/create', CreatePostsController::class)->name('backend.posts.create');
             Route::post('posts', StorePostController::class)->name('backend.posts.store');
-            Route::get('posts/{post}', PreviewPostController::class)->name('backend.posts.preview');
+            Route::get('posts/{post}/preview', PreviewPostController::class)->name('backend.posts.preview');
             Route::get('posts/{post}/edit', EditPostController::class)->name('backend.posts.edit');
             Route::put('posts/{post}', UpdatePostController::class)->name('backend.posts.update');
             Route::delete('posts/{post}', DeletePostController::class)->name('backend.posts.delete');
