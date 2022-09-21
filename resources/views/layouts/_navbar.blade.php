@@ -13,6 +13,9 @@
                 <li class="nav-item">
                     <a class="nav-link @if(Request::is('blog/*')) active @endif" href="{{ route('blog.index') }}">{{ __('Blog') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(Request::is('blog/*')) active @endif" href="{{ route('projects.show') }}">{{ __('Projects') }}</a>
+                </li>
                 @auth
                     <li class="nav-item">
                         <a class="nav-link @if(Request::is(\App\Providers\RouteServiceProvider::BACKEND.'/posts/*')) active @endif" href="{{ route('backend.posts.index') }}">{{ __('Posts') }}</a>

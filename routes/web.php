@@ -19,6 +19,7 @@ use App\Http\Controllers\Legal\ShowCopyrightController;
 use App\Http\Controllers\Legal\ShowDisclaimerController;
 use App\Http\Controllers\Legal\ShowNoticeController;
 use App\Http\Controllers\Legal\ShowTermsOfServiceController;
+use App\Http\Controllers\ShowProjectsController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,8 @@ Route::get('terms_of_service', ShowTermsOfServiceController::class)->name('legal
 Route::post('terms_of_service', AgreeToTermsOfServiceController::class)->name('legal.tos.agree');
 
 Route::middleware('tos_agreed')->group(function () {
+
+    Route::get('projects', ShowProjectsController::class)->name('projects.show');
 
     Route::get('blog', ShowPostsController::class)->name('blog.index');
     Route::get('blog/{blog}', ShowSinglePostController::class)->name('blog.show');

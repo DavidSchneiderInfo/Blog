@@ -21,7 +21,7 @@ class ConfirmTermsOfService
         if (Auth::id()) {
             return $next($request);
         }
-
+        
         // Find cookie
         $agreement = $request->cookie('terms_of_service_agreement');
 
