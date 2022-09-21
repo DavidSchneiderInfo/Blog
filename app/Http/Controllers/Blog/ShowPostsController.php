@@ -15,6 +15,8 @@ class ShowPostsController extends Controller
      */
     public function __invoke()
     {
-        return view('blog.index')->with('posts', Post::paginate());
+        $posts = Post::orderBy('created_at', 'DESC')
+            ->paginate(10);
+        return view('blog.index')->with('posts', $posts);
     }
 }

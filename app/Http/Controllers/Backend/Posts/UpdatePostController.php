@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Posts;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Posts\UpdatePostRequest;
 use App\Models\Post;
+use App\Services\PostService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
@@ -28,7 +29,7 @@ class UpdatePostController extends Controller
     {
         $this->authorize('update', $post);
 
-        $post->update($request->except('_token'));
+        $post = PostService::update($post, $request->except('_token'));
 
         return redirect(route('backend.posts.edit', $post));
     }

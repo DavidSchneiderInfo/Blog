@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Backend\Posts;
+namespace Tests\Feature\Http\Controllers\Backend\Posts;
 
 use App\Models\Post;
 use Tests\TestCase;
 
-class ShowPostTest extends TestCase
+class ShowPostListTest extends TestCase
 {
-    public function testUserCanPreviewPost(): void
+    public function testUserCanSeeCreatePostForm(): void
     {
         $post = Post::factory()->create();
 
         $this->actingAs($post->user)
-            ->get(route('backend.posts.preview', $post))
+            ->get(route('backend.posts.index'))
             ->assertStatus(200)
             ->assertSee($post->title);
     }

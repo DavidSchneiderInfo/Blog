@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Blog;
+namespace Tests\Feature\Http\Controllers\Blog;
 
 use App\Models\Post;
 use Tests\TestCase;
 
-class ShowPostsControllerTest extends TestCase
+class ShowSinglePostControllerTest extends TestCase
 {
     public function testBlogShowsPosts(): void
     {
         $post = Post::factory()->create();
 
-        $this->withTosAgreed()
-            ->get(route('blog.index'))
+        $response = $this->withTosAgreed()
+            ->get(route('blog.show', $post))
             ->assertStatus(200)
             ->assertSee($post->title)
-            ->assertSee($post->summary);
+            ->assertSee($post->content);
     }
 }
