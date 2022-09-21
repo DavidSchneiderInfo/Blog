@@ -1,5 +1,5 @@
 <div class="post">
-    <h2 class="post-title">{{ $post->title }}</h2>
+    <h3 class="post-title">{{ $post->title }}</h3>
     <ul class="post-meta">
         <li class="bg-primary">
             {{ $post->created_at->diffForHumans() }}
