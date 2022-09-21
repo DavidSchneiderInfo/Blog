@@ -1,26 +1,26 @@
-@extends('layouts.app')
+@extends('layouts.blog')
 
 @section('sidebar')
     @parent
     <x-widgets.text :title="__('Manage Profile')">
         <p>{{ __('This is where you manage your profile.') }}</p>
-    </x-widgets.text>
 
-    <div class="d-grid gap-2">
-        <button type="button"
-                class="btn btn-primary"
-                onclick="event.preventDefault();document.getElementById('profile-export-form').submit();"
+        <div class="d-grid gap-2">
+            <button type="button"
+                    class="btn btn-primary"
+                    onclick="event.preventDefault();document.getElementById('profile-export-form').submit();"
             >
-            {{ __('Export profile') }}
-        </button>
-        <button type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#importDataModal"
+                {{ __('Export profile') }}
+            </button>
+            <button type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#importDataModal"
             >
-            {{ __('Import profile') }}
-        </button>
-    </div>
+                {{ __('Import profile') }}
+            </button>
+        </div>
+    </x-widgets.text>
 
     <form id="profile-export-form" action="{{ route('backend.profile.export') }}" method="POST" class="d-none">
         @csrf
