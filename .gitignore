@@ -17,3 +17,4 @@ yarn-error.log
 .run
 storage/testing
 storage/debugbar
+public/build
