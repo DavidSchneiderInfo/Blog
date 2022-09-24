@@ -12,7 +12,7 @@ use App\Http\Controllers\Backend\Profile\ImportDataController;
 use App\Http\Controllers\Backend\Profile\ShowProfileController;
 use App\Http\Controllers\Blog\ShowPostsController;
 use App\Http\Controllers\Blog\ShowSinglePostController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\TermsOfService\AgreeToTermsOfServiceController;
 use App\Http\Controllers\TermsOfService\ShowTermsOfServiceController;
@@ -47,7 +47,7 @@ Route::middleware('tos_agreed')->group(function () {
 
     Route::middleware('auth')->group(function () {
 
-        Route::get(RouteServiceProvider::HOME, [HomeController::class, 'index'])->name('home');
+        Route::get(RouteServiceProvider::HOME, [DashboardController::class, 'index'])->name('home');
 
         Route::prefix(RouteServiceProvider::BACKEND)->middleware('verified')->group(function () {
 
