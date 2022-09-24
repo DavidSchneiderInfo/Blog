@@ -20,6 +20,7 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade');
             $table->string('title', 140);
+            $table->text('content');
             $table->timestamps();
         });
     }

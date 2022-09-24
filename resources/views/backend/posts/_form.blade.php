@@ -14,3 +14,19 @@
         </div>
     @enderror
 </div>
+<div class="mb-3">
+  <label for="content" class="form-label">{{ __('Content') }}</label>
+  <textarea 
+        class="form-control" 
+        id="content" 
+        name="content" 
+        rows="3">{{ isset($post) ? old('content', $post->content) : '' }}</textarea>
+</div>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+ClassicEditor
+    .create( document.querySelector('#content'))
+    .catch( error => {
+        console.log( error );
+    } );
+</script>

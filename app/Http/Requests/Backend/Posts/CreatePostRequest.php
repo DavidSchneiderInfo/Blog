@@ -25,6 +25,7 @@ class CreatePostRequest extends FormRequest
     {
         return [
             'title' => 'required|string|between:1,140',
+            'content' => 'required|string|between:1,65535',
         ];
     }
 }
