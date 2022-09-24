@@ -8,7 +8,7 @@
     <div class="container-fluid flex-shrink-0" style="margin-top: 60px;">
         @isset($title)
             <div class="row">
-                <h1>{{ $title }}</h1>
+                <h2>{{ $title }}</h2>
             </div>
         @endif
         <div class="row">

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1>{{ __('Welcome') }}</h1>
+                <h2>{{ __('Welcome') }}</h2>
             </div>
         </div>
     </div>
