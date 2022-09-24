@@ -6,5 +6,11 @@
         <x-project-card :thumbnail="asset('img/projects/dsinfo.jpg')">
             @markdown(file_get_contents(lang_path(app()->getLocale().'/projects/davidschneiderInfo-blog.md')))
         </x-project-card>
+        <x-project-card :thumbnail="asset('img/projects/dsinfo.jpg')">
+            @markdown(file_get_contents(lang_path(app()->getLocale().'/projects/davidschneiderInfo-mse.md')))
+        </x-project-card>
+        <x-project-card :thumbnail="asset('img/projects/dsinfo.jpg')">
+            @markdown(file_get_contents(lang_path(app()->getLocale().'/projects/davidschneiderInfo-devops-toolbox.md')))
+        </x-project-card>
     </div>
 @endsection
