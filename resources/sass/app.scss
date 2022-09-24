@@ -7,6 +7,14 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+// Fontawesome
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/brands.scss';
+@import '@fortawesome/fontawesome-free/scss/regular.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
+@import '@fortawesome/fontawesome-free/scss/v4-shims.scss';
+
 .card {
     .card-header,
     .card-body {
@@ -39,3 +47,12 @@
 
 .post-body {
 }
+
+ .ck-editor__editable_inline {
+     min-height: 400px;
+ }
+
+ .project-list {
+     h1 { font-size: 1.25rem; }
+     h2, h3, h4, h5 { font-size: 1.0rem; }
+ }

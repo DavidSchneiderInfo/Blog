@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Backend\Posts;
+namespace Tests\Feature\Http\Controllers\Backend\Posts;
 
 use App\Models\Post;
 use Tests\TestCase;

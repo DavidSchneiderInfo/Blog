@@ -2,6 +2,6 @@
 
 @section('content')
     <x-post :post="$post">
-        {{ $post->content }}
+        {!! $post->content !!}
     </x-post>
 @endsection

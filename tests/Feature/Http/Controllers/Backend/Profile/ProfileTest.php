@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Backend\Profile;
+namespace Tests\Feature\Http\Controllers\Backend\Profile;
 
 use App\Http\Livewire\Profile\EditDetails;
 use App\Models\User;

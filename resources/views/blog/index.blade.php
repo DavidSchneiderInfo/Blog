@@ -10,7 +10,7 @@
                     <a href="{{ route('blog.show', $post) }}">{{ __('Show') }}</a>
                 </p>
             </x-post>
-
         @endforeach
+        {{ $posts->links() }}
     </div>
 @endsection

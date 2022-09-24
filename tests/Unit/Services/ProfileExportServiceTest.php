@@ -47,12 +47,16 @@ class ProfileExportServiceTest extends TestCase
                     'content' => $posts->first()->content,
                     'created_at' => (string) $posts->first()->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $posts->first()->updated_at->format('Y-m-d H:i:s'),
+                    'keywords' => $posts->first()->keywords,
+                    'description' => $posts->first()->description,
                 ],
                 [
                     'title' => $posts->last()->title,
                     'content' => $posts->last()->content,
                     'created_at' => $posts->last()->created_at->format('Y-m-d H:i:s'),
                     'updated_at' => $posts->last()->updated_at->format('Y-m-d H:i:s'),
+                    'keywords' => $posts->last()->keywords,
+                    'description' => $posts->last()->description,
                 ],
             ],
         ]);
