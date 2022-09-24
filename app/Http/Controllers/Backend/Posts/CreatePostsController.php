@@ -13,7 +13,7 @@ class CreatePostsController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @return bool|\Illuminate\Auth\Access\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return bool|Response|Application|Factory|View
      */
     public function __invoke(): View|Factory|Response|bool|Application
     {
