@@ -2,6 +2,8 @@
 
 @section('sidebar')
     @parent
+
+    <x-widgets.text :title="__('Manage Post')">
     <ul>
         <li>
             <a href="{{ route('backend.posts.preview', $post) }}" target="_blank">{{ __('Preview Post') }}</a>
@@ -18,6 +20,7 @@
             </form>
         </li>
     </ul>
+    </x-widgets.text>
 @endsection
 
 @section('content')

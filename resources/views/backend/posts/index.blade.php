@@ -1,38 +1,43 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => __('Post List')])
 
 @section('sidebar')
     @parent
-    <ul>
-        <li>
-            <a href="{{ route('backend.posts.create') }}">{{ __('Create Post') }}</a>
-        </li>
-    </ul>
+    <x-widgets.text :title="__('Manage Post')">
+        <ul>
+            <li>
+                <a href="{{ route('backend.posts.create') }}">{{ __('Create Post') }}</a>
+            </li>
+        </ul>
+    </x-widgets.text>
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">{{ __('Post List') }}</div>
-
-                    <div class="card-body">
-                        @if($posts->count())
-                            <ul>
-                                @foreach($posts as $post)
-                                <li>
-                                    <a href="{{ route('backend.posts.edit', $post) }}">
-                                        {{ $post->title }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        @else
-                            {{ __('No posts found.') }}
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @if($posts->count())
+        <table class="table table-striped bg-white">
+            <thead class="">
+                <tr>
+                    <th>{{ __('Post ID') }}</th>
+                    <th>{{ __('Post Title') }}</th>
+                </tr>
+            </thead>
+            <tbody class="text-white">
+                @foreach($posts as $post)
+                <tr>
+                    <td>
+                        <a href="{{ route('backend.posts.edit', $post) }}">
+                            {{ $post->id }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('backend.posts.edit', $post) }}">
+                            {{ $post->title }}
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        {{ __('No posts found.') }}
+    @endif
 @endsection

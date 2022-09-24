@@ -1,4 +1,4 @@
-<footer class="mt-auto text-white-50">
+<footer class="text-center">
     <ul class="nav justify-content-center">
         <li class="nav-item">
             <a class="nav-link" href="{{ route('legal.notice.show') }}">{{ __('Legal Notice') }}</a>
@@ -13,5 +13,5 @@
             <a class="nav-link" href="{{ route('legal.copyright.show') }}">{{ __('Copyright') }}</a>
         </li>
     </ul>
-    <p>&copy; David Schneider {{ date('Y') }}.</p>
+    <p class="text-white-50">&copy; David Schneider {{ date('Y') }}.</p>
 </footer>

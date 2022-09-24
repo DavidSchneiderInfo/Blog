@@ -3,14 +3,14 @@
 <head>
     @include('layouts._header')
 </head>
-<body class="d-flex h-100 text-center text-bg-dark">
+<body class="d-flex h-100 text-center text-bg-dark text-white">
 
-    <div id="app" class="cover-container d-flex w-100 h-100 mx-auto flex-column">
+    <div id="app" class="d-flex w-100 h-100 mx-auto flex-column">
         <header class="mb-auto">
             @include('layouts._navbar')
         </header>
 
-        <main class="px-3">
+        <main class="mb-auto">
             @yield('content')
         </main>
 

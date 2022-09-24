@@ -6,3 +6,36 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+.card {
+    .card-header,
+    .card-body {
+        @extend .text-dark;
+    }
+}
+.post {
+    text-align: left;
+    @extend .p-2;
+}
+
+.post:not(:last-child):after {
+    @extend .mb-5;
+}
+
+.post-title {
+    @extend .mb-0;
+}
+
+.post-meta {
+    @extend .p-0;
+    @extend .mx-0;
+    @extend .mt-0;
+    @extend .mb-3;
+    li {
+        @extend .badge;
+        list-style: none;
+    }
+}
+
+.post-body {
+}
