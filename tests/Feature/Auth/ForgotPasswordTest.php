@@ -31,7 +31,7 @@ class ForgotPasswordTest extends TestCase
 
     public function testUserCanViewAnEmailPasswordForm(): void
     {
-        $response = $this->get($this->passwordRequestRoute());
+        $response = $this->withTosAgreed()->get($this->passwordRequestRoute());
 
         $response->assertSuccessful();
         $response->assertViewIs('auth.passwords.email');
@@ -41,7 +41,7 @@ class ForgotPasswordTest extends TestCase
     {
         $user = User::factory()->make();
 
-        $response = $this->actingAs($user)->get($this->passwordRequestRoute());
+        $response = $this->withTosAgreed()->actingAs($user)->get($this->passwordRequestRoute());
 
         $response->assertSuccessful();
         $response->assertViewIs('auth.passwords.email');
@@ -54,7 +54,7 @@ class ForgotPasswordTest extends TestCase
             'email' => 'john@example.com',
         ]);
 
-        /*$response = */$this->post($this->passwordEmailPostRoute(), [
+        /*$response = */$this->withTosAgreed()->post($this->passwordEmailPostRoute(), [
             'email' => 'john@example.com',
         ]);
 
@@ -69,7 +69,7 @@ class ForgotPasswordTest extends TestCase
     {
         Notification::fake();
 
-        $response = $this->from($this->passwordEmailGetRoute())->post($this->passwordEmailPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->passwordEmailGetRoute())->post($this->passwordEmailPostRoute(), [
             'email' => 'nobody@example.com',
         ]);
 
@@ -80,7 +80,7 @@ class ForgotPasswordTest extends TestCase
 
     public function testEmailIsRequired()
     {
-        $response = $this->from($this->passwordEmailGetRoute())->post($this->passwordEmailPostRoute(), []);
+        $response = $this->withTosAgreed()->from($this->passwordEmailGetRoute())->post($this->passwordEmailPostRoute(), []);
 
         $response->assertRedirect($this->passwordEmailGetRoute());
         $response->assertSessionHasErrors('email');
@@ -88,7 +88,7 @@ class ForgotPasswordTest extends TestCase
 
     public function testEmailIsAValidEmail()
     {
-        $response = $this->from($this->passwordEmailGetRoute())->post($this->passwordEmailPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->passwordEmailGetRoute())->post($this->passwordEmailPostRoute(), [
             'email' => 'invalid-email',
         ]);
 

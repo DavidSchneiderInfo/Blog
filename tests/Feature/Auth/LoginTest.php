@@ -49,7 +49,7 @@ class LoginTest extends TestCase
 
     public function testUserCanViewALoginForm()
     {
-        $response = $this->get($this->loginGetRoute());
+        $response = $this->withTosAgreed()->get($this->loginGetRoute());
 
         $response->assertSuccessful();
         $response->assertViewIs('auth.login');
@@ -59,7 +59,7 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->make();
 
-        $response = $this->actingAs($user)->get($this->loginGetRoute());
+        $response = $this->withTosAgreed()->actingAs($user)->get($this->loginGetRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -70,7 +70,7 @@ class LoginTest extends TestCase
             'password' => Hash::make($password = 'i-love-laravel'),
         ]);
 
-        $response = $this->post($this->loginPostRoute(), [
+        $response = $this->withTosAgreed()->post($this->loginPostRoute(), [
             'email' => $user->email,
             'password' => $password,
         ]);
@@ -86,7 +86,7 @@ class LoginTest extends TestCase
             'password' => Hash::make($password = 'i-love-laravel'),
         ]);
 
-        $response = $this->post($this->loginPostRoute(), [
+        $response = $this->withTosAgreed()->post($this->loginPostRoute(), [
             'email' => $user->email,
             'password' => $password,
             'remember' => 'on',
@@ -109,7 +109,7 @@ class LoginTest extends TestCase
             'password' => Hash::make('i-love-laravel'),
         ]);
 
-        $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->loginGetRoute())->post($this->loginPostRoute(), [
             'email' => $user->email,
             'password' => 'invalid-password',
         ]);
@@ -123,7 +123,7 @@ class LoginTest extends TestCase
 
     public function testUserCannotLoginWithEmailThatDoesNotExist()
     {
-        $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+        $response = $this->withTosAgreed()->from($this->loginGetRoute())->post($this->loginPostRoute(), [
             'email' => 'nobody@example.com',
             'password' => 'invalid-password',
         ]);
@@ -139,7 +139,7 @@ class LoginTest extends TestCase
     {
         $this->be(User::factory()->create());
 
-        $response = $this->post($this->logoutRoute());
+        $response = $this->withTosAgreed()->post($this->logoutRoute());
 
         $response->assertRedirect($this->successfulLogoutRoute());
         $this->assertGuest();
@@ -147,7 +147,7 @@ class LoginTest extends TestCase
 
     public function testUserCannotLogoutWhenNotAuthenticated()
     {
-        $response = $this->post($this->logoutRoute());
+        $response = $this->withTosAgreed()->post($this->logoutRoute());
 
         $response->assertRedirect($this->successfulLogoutRoute());
         $this->assertGuest();
@@ -160,7 +160,7 @@ class LoginTest extends TestCase
         ]);
 
         foreach (range(0, 5) as $_) {
-            $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+            $response = $this->withTosAgreed()->from($this->loginGetRoute())->post($this->loginPostRoute(), [
                 'email' => $user->email,
                 'password' => 'invalid-password',
             ]);

@@ -15,4 +15,9 @@ abstract class TestCase extends BaseTestCase
     {
         return User::factory()->create($attributes);
     }
+
+    public function withTosAgreed()
+    {
+        return $this->withCookie('terms_of_service_agreement', true);
+    }
 }

@@ -16,7 +16,8 @@ class HomepageTest extends TestCase
     {
         $posts = Post::factory(5)->create();
 
-        $response = $this->get('/')
+        $response = $this->withTosAgreed()
+            ->get('/')
             ->assertStatus(200)
             ->assertSee(__('Welcome'));
     }

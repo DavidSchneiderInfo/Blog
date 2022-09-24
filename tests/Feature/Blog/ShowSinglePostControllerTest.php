@@ -13,7 +13,8 @@ class ShowSinglePostControllerTest extends TestCase
     {
         $post = Post::factory()->create();
 
-        $response = $this->get(route('blog.show', $post))
+        $response = $this->withTosAgreed()
+            ->get(route('blog.show', $post))
             ->assertStatus(200)
             ->assertSee($post->title)
             ->assertSee($post->content);

@@ -14,6 +14,8 @@ use App\Http\Controllers\Blog\ShowPostsController;
 use App\Http\Controllers\Blog\ShowSinglePostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\TermsOfService\AgreeToTermsOfServiceController;
+use App\Http\Controllers\TermsOfService\ShowTermsOfServiceController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,31 +31,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomepageController::class);
+Route::get('terms_of_service', ShowTermsOfServiceController::class)->name('tos.show');
+Route::post('terms_of_service', AgreeToTermsOfServiceController::class)->name('tos.agree');
 
-Route::get('blog', ShowPostsController::class)->name('blog.index');
-Route::get('blog/{blog}', ShowSinglePostController::class)->name('blog.show');
+Route::middleware('tos_agreed')->group(function () {
 
-Auth::routes(['verify' => true]);
+    Route::get('blog', ShowPostsController::class)->name('blog.index');
+    Route::get('blog/{blog}', ShowSinglePostController::class)->name('blog.show');
 
-Route::middleware('auth')->group(function () {
+    Route::get('/', HomepageController::class);
 
-    Route::get(RouteServiceProvider::HOME, [HomeController::class, 'index'])->name('home');
+    Route::get('blog', ShowPostsController::class)->name('blog.index');
 
-    Route::prefix(RouteServiceProvider::BACKEND)->middleware('verified')->group(function () {
+    Auth::routes(['verify' => true]);
 
-        // Posts
-        Route::get('posts', ShowPostListController::class)->name('backend.posts.index');
-        Route::get('posts/create', CreatePostsController::class)->name('backend.posts.create');
-        Route::post('posts', StorePostController::class)->name('backend.posts.store');
-        Route::get('posts/{post}', PreviewPostController::class)->name('backend.posts.preview');
-        Route::get('posts/{post}/edit', EditPostController::class)->name('backend.posts.edit');
-        Route::put('posts/{post}', UpdatePostController::class)->name('backend.posts.update');
-        Route::delete('posts/{post}', DeletePostController::class)->name('backend.posts.delete');
+    Route::middleware('auth')->group(function () {
 
-        // Profile
-        Route::get('profile', ShowProfileController::class)->name('backend.profile.index');
-        Route::post('profile/export', ExportDataController::class)->name('backend.profile.export');
-        Route::post('profile/import', ImportDataController::class)->name('backend.profile.import');
+        Route::get(RouteServiceProvider::HOME, [HomeController::class, 'index'])->name('home');
+
+        Route::prefix(RouteServiceProvider::BACKEND)->middleware('verified')->group(function () {
+
+            // Posts
+            Route::get('posts', ShowPostListController::class)->name('backend.posts.index');
+            Route::get('posts/create', CreatePostsController::class)->name('backend.posts.create');
+            Route::post('posts', StorePostController::class)->name('backend.posts.store');
+            Route::get('posts/{post}', PreviewPostController::class)->name('backend.posts.preview');
+            Route::get('posts/{post}/edit', EditPostController::class)->name('backend.posts.edit');
+            Route::put('posts/{post}', UpdatePostController::class)->name('backend.posts.update');
+            Route::delete('posts/{post}', DeletePostController::class)->name('backend.posts.delete');
+
+            // Profile
+            Route::get('profile', ShowProfileController::class)->name('backend.profile.index');
+            Route::post('profile/export', ExportDataController::class)->name('backend.profile.export');
+            Route::post('profile/import', ImportDataController::class)->name('backend.profile.import');
+        });
     });
 });
