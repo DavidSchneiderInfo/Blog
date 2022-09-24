@@ -7,7 +7,15 @@
                 <h1>{{ __('Blog') }}</h1>
 
                 @foreach($posts as $post)
-                <h2>{{ $post->title }}</h2>
+                    <h2>{{ $post->title }}</h2>
+                    <div>
+                        <p>
+                            {!! $post->summary !!}
+                            ...
+                            <a href="{{ route('blog.show', $post) }}">{{ __('Show') }}</a>
+                        </p>
+                    </div>
+
                 @endforeach
 
             </div>
