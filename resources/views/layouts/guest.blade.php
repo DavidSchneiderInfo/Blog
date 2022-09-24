@@ -10,7 +10,7 @@
             @include('layouts._navbar')
         </header>
 
-        <main class="px-3 text-white">
+        <main class="px-3 text-dark">
             @yield('content')
         </main>
 
