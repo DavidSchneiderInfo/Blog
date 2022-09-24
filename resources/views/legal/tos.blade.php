@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1>{{ __('Terms of Service') }}</h1>
-                <form action="{{ route('tos.agree') }}" method="POST">
+                @markdown($doc)
+                <form action="{{ route('legal.tos.agree') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-primary">
                         {{ __('I accept these terms of service')}}

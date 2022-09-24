@@ -14,8 +14,11 @@ use App\Http\Controllers\Blog\ShowPostsController;
 use App\Http\Controllers\Blog\ShowSinglePostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\TermsOfService\AgreeToTermsOfServiceController;
-use App\Http\Controllers\TermsOfService\ShowTermsOfServiceController;
+use App\Http\Controllers\Legal\AgreeToTermsOfServiceController;
+use App\Http\Controllers\Legal\ShowCopyrightController;
+use App\Http\Controllers\Legal\ShowDisclaimerController;
+use App\Http\Controllers\Legal\ShowNoticeController;
+use App\Http\Controllers\Legal\ShowTermsOfServiceController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,8 +34,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('terms_of_service', ShowTermsOfServiceController::class)->name('tos.show');
-Route::post('terms_of_service', AgreeToTermsOfServiceController::class)->name('tos.agree');
+Route::get('copyright', ShowCopyrightController::class)->name('legal.copyright.show');
+Route::get('disclaimer', ShowDisclaimerController::class)->name('legal.disclaimer.show');
+Route::get('legal_notice', ShowNoticeController::class)->name('legal.notice.show');
+Route::get('terms_of_service', ShowTermsOfServiceController::class)->name('legal.tos.show');
+Route::post('terms_of_service', AgreeToTermsOfServiceController::class)->name('legal.tos.agree');
 
 Route::middleware('tos_agreed')->group(function () {
 
