@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get(RouteServiceProvider::HOME, [HomeController::class, 'index'])->name('home');
 
-    Route::prefix(RouteServiceProvider::BACKEND)->group(function () {
+    Route::prefix(RouteServiceProvider::BACKEND)->middleware('verified')->group(function () {
 
         // Posts
         Route::get('posts', ShowPostListController::class)->name('backend.posts.index');
